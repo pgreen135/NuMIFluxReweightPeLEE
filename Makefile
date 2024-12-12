@@ -1,6 +1,9 @@
-all: Reweight
+all: Reweight NuWroReweight
 
 Reweight: reweightPPFX.cpp reweight_root_dict.o
+	$(CXX) $(shell root-config --cflags --libs) -O3 -o $@ $^
+
+NuWroReweight: reweightPPFXNuWro.cpp
 	$(CXX) $(shell root-config --cflags --libs) -O3 -o $@ $^
 
 reweight_root_dict.o:
@@ -15,4 +18,4 @@ reweight_root_dict.o:
 .INTERMEDIATE: reweight_root_dict.o
 
 clean:
-	$(RM) Reweight reweight_root_dict.o reweight_root_dict_rdict.pcm
+	$(RM) Reweight NuWroReweight reweight_root_dict.o reweight_root_dict_rdict.pcm
